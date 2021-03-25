@@ -55,6 +55,7 @@
             this.filesList.Location = new System.Drawing.Point(456, 60);
             this.filesList.Name = "filesList";
             this.filesList.Size = new System.Drawing.Size(238, 412);
+            this.filesList.Sorted = true;
             this.filesList.TabIndex = 6;
             this.filesList.SelectedIndexChanged += new System.EventHandler(this.filesList_SelectedIndexChanged);
             // 

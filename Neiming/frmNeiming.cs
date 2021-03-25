@@ -38,12 +38,8 @@ namespace Neiming
 
             if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
             {
-                DirectoryInfo directory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
-                var files = directory.GetFiles();
-                FileManager.LoadDictionary(files);
-
-                foreach (var file in files)
-                    filesList.Items.Add(file.Name, true);
+                FileManager.SelectedPath = folderBrowserDialog.SelectedPath;
+                FileManager.RefreshFileList(filesList);
             }
         }
 
@@ -58,6 +54,7 @@ namespace Neiming
         private void buttonNeiming_Click(object sender, EventArgs e)
         {
             FileManager.ChangeNames(textBoxConvention.Text, startFrom.Value.ToString());
+            FileManager.RefreshFileList(filesList);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

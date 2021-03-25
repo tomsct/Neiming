@@ -18,7 +18,21 @@ namespace Neiming
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSelectAll.Checked)
+                CheckUncheckAll(true);
+            else
+                CheckUncheckAll(false);
+        }
+
+        private void CheckUncheckAll(bool state)
+        {
+            for (int i = 0; i < filesList.Items.Count; i++)
+                filesList.SetItemChecked(i, state);
+        }
+
+        private void browseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialog.ShowDialog();
 
@@ -33,17 +47,27 @@ namespace Neiming
             }
         }
 
-        private void buttonNeiming_Click(object sender, EventArgs e)
-        {
-            FileManager.ChangeNames(textBoxConvention.Text, textBoxStartFrom.Text);
-        }
-
         private void filesList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             string name = filesList.Items[e.Index].ToString();
 
             var key = FileManager.files.Where(x => x.Key.Name == name).Select(x => x.Key).FirstOrDefault();
             FileManager.files[key] = Convert.ToBoolean(e.NewValue);
+        }
+
+        private void buttonNeiming_Click(object sender, EventArgs e)
+        {
+            FileManager.ChangeNames(textBoxConvention.Text, startFrom.Value.ToString());
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void filesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxConvention.Text = filesList.SelectedItem.ToString();
         }
     }
 }

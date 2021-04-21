@@ -53,7 +53,11 @@ namespace Neiming
 
         private void buttonNeiming_Click(object sender, EventArgs e)
         {
-            FileManager.ChangeNames(textBoxConvention.Text, startFrom.Value.ToString());
+            if (checkBoxSelectIndex.Checked.Equals(true))
+                FileManager.ChangeNamesIndex(textBoxConvention.Text, startFrom.Value.ToString(), (int)lastIndex.Value, checkBoxRightToLeft.Checked);
+            else
+                FileManager.ChangeNames(textBoxConvention.Text, startFrom.Value.ToString());
+
             FileManager.RefreshFileList(filesList);
         }
 
@@ -65,6 +69,11 @@ namespace Neiming
         private void filesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxConvention.Text = filesList.SelectedItem.ToString();
+        }
+
+        private void textBoxConvention_Click(object sender, EventArgs e)
+        {
+            lblCurrentIndex.Text = textBoxConvention.SelectionStart.ToString();
         }
     }
 }

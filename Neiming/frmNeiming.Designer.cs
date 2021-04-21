@@ -38,8 +38,13 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonNeiming = new System.Windows.Forms.Button();
             this.startFrom = new System.Windows.Forms.NumericUpDown();
+            this.lastIndex = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxSelectIndex = new System.Windows.Forms.CheckBox();
+            this.lblCurrentIndex = new System.Windows.Forms.Label();
+            this.checkBoxRightToLeft = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lastIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxConvention
@@ -48,6 +53,7 @@
             this.textBoxConvention.Name = "textBoxConvention";
             this.textBoxConvention.Size = new System.Drawing.Size(274, 22);
             this.textBoxConvention.TabIndex = 2;
+            this.textBoxConvention.Click += new System.EventHandler(this.textBoxConvention_Click);
             // 
             // filesList
             // 
@@ -79,7 +85,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(706, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(706, 30);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -89,7 +95,7 @@
             this.browseToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // browseToolStripMenuItem
@@ -108,7 +114,7 @@
             // 
             // buttonNeiming
             // 
-            this.buttonNeiming.Location = new System.Drawing.Point(80, 157);
+            this.buttonNeiming.Location = new System.Drawing.Point(80, 193);
             this.buttonNeiming.Name = "buttonNeiming";
             this.buttonNeiming.Size = new System.Drawing.Size(110, 54);
             this.buttonNeiming.TabIndex = 9;
@@ -122,12 +128,56 @@
             this.startFrom.Name = "startFrom";
             this.startFrom.Size = new System.Drawing.Size(74, 22);
             this.startFrom.TabIndex = 10;
+            this.startFrom.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lastIndex
+            // 
+            this.lastIndex.Location = new System.Drawing.Point(304, 102);
+            this.lastIndex.Name = "lastIndex";
+            this.lastIndex.Size = new System.Drawing.Size(50, 22);
+            this.lastIndex.TabIndex = 11;
+            // 
+            // checkBoxSelectIndex
+            // 
+            this.checkBoxSelectIndex.AutoSize = true;
+            this.checkBoxSelectIndex.Location = new System.Drawing.Point(177, 103);
+            this.checkBoxSelectIndex.Name = "checkBoxSelectIndex";
+            this.checkBoxSelectIndex.Size = new System.Drawing.Size(106, 21);
+            this.checkBoxSelectIndex.TabIndex = 13;
+            this.checkBoxSelectIndex.Text = "Select Index";
+            this.checkBoxSelectIndex.UseVisualStyleBackColor = true;
+            // 
+            // lblCurrentIndex
+            // 
+            this.lblCurrentIndex.AutoSize = true;
+            this.lblCurrentIndex.Location = new System.Drawing.Point(360, 104);
+            this.lblCurrentIndex.Name = "lblCurrentIndex";
+            this.lblCurrentIndex.Size = new System.Drawing.Size(0, 17);
+            this.lblCurrentIndex.TabIndex = 14;
+            // 
+            // checkBoxRightToLeft
+            // 
+            this.checkBoxRightToLeft.AutoSize = true;
+            this.checkBoxRightToLeft.Location = new System.Drawing.Point(177, 131);
+            this.checkBoxRightToLeft.Name = "checkBoxRightToLeft";
+            this.checkBoxRightToLeft.Size = new System.Drawing.Size(102, 21);
+            this.checkBoxRightToLeft.TabIndex = 15;
+            this.checkBoxRightToLeft.Text = "Right to left";
+            this.checkBoxRightToLeft.UseVisualStyleBackColor = true;
             // 
             // frmNeiming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 482);
+            this.Controls.Add(this.checkBoxRightToLeft);
+            this.Controls.Add(this.lblCurrentIndex);
+            this.Controls.Add(this.checkBoxSelectIndex);
+            this.Controls.Add(this.lastIndex);
             this.Controls.Add(this.startFrom);
             this.Controls.Add(this.buttonNeiming);
             this.Controls.Add(this.checkBoxSelectAll);
@@ -140,6 +190,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lastIndex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +207,10 @@
         private System.Windows.Forms.Button buttonNeiming;
         private System.Windows.Forms.NumericUpDown startFrom;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown lastIndex;
+        private System.Windows.Forms.CheckBox checkBoxSelectIndex;
+        private System.Windows.Forms.Label lblCurrentIndex;
+        private System.Windows.Forms.CheckBox checkBoxRightToLeft;
     }
 }
 

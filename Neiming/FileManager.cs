@@ -22,7 +22,44 @@ namespace Neiming
                 var extension = file.Extension;
                 string episode = (counter < 10) ? episode = $"0{counter}" : episode = counter.ToString();
                 
-                File.Move(file.FullName, file.FullName.Replace(file.Name, $"{nameConvention} {episode}{extension}"));
+                File.Move(file.FullName, file.FullName.Replace(file.Name, $"{nameConvention}{episode}{extension}"));
+                counter++;
+            }
+        }
+
+        public static void ChangeNamesIndex(string nameConvention, string startFrom, int lastIndex, bool rightToLeft)
+        {
+            int counter = Int32.Parse(startFrom);
+
+            foreach (var file in files.Where(x => x.Value).Select(x => x.Key).ToArray())
+            {
+                string extension = file.Extension;
+
+                string episode = (counter < 10) ? episode = $"0{counter}" : episode = counter.ToString();
+
+                var nameAux = file.Name.Replace(file.Extension, "");
+
+                if (rightToLeft)
+                {
+                    var auxArray = nameAux.ToCharArray();
+                    Array.Reverse(auxArray);
+
+                    var aux = new String(auxArray);
+                    aux = aux.Remove(0, lastIndex);
+
+                    auxArray = aux.ToCharArray();
+
+                    Array.Reverse(auxArray);
+
+                    nameAux = new string(auxArray);
+                }
+                else
+                {
+                    nameAux = nameAux.Remove(0, lastIndex);
+                    nameAux = nameAux.Insert(0, nameConvention.Replace("{E}", episode));
+                }
+                nameAux = nameAux.Trim(); 
+                File.Move(file.FullName, file.FullName.Replace(file.Name, $"{nameAux}{extension}"));
                 counter++;
             }
         }
@@ -44,7 +81,7 @@ namespace Neiming
 
             filesList.Items.Clear();
             foreach (var file in files)
-                filesList.Items.Add(file.Name.Remove(file.Name.IndexOf('.')), true);
+                filesList.Items.Add(file.Name.Remove(file.Name.LastIndexOf('.')), true);
         }
     }
 }
